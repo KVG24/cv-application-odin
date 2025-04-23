@@ -23,7 +23,11 @@ function InputPersonalInfo({ onNameChange, onPhoneChange, onAddressChange }) {
 
 function InputEducationInfo({
     onSchoolChange,
+    onSchoolStartChange,
+    onSchoolEndChange,
     onUniversityChange,
+    onUniversityStartChange,
+    onUniversityEndChange,
     onAdditionalInfoChange,
 }) {
     return (
@@ -36,11 +40,11 @@ function InputEducationInfo({
                 </label>
                 <label>
                     From:
-                    <input type="date"></input>
+                    <input type="date" onChange={onSchoolStartChange}></input>
                 </label>
                 <label>
                     To:
-                    <input type="date"></input>
+                    <input type="date" onChange={onSchoolEndChange}></input>
                 </label>
             </div>
             <div className="university">
@@ -50,11 +54,14 @@ function InputEducationInfo({
                 </label>
                 <label>
                     From:
-                    <input type="date"></input>
+                    <input
+                        type="date"
+                        onChange={onUniversityStartChange}
+                    ></input>
                 </label>
                 <label>
                     To:
-                    <input type="date"></input>
+                    <input type="date" onChange={onUniversityEndChange}></input>
                 </label>
             </div>
             <label>
@@ -69,7 +76,18 @@ function InputEducationInfo({
     );
 }
 
-function Resume({ name, phone, address }) {
+function Resume({
+    name,
+    phone,
+    address,
+    school,
+    schoolStart,
+    schoolEnd,
+    university,
+    universityStart,
+    universityEnd,
+    additionInfo,
+}) {
     return (
         <section className="resume">
             <div className="resume-personal-info">
@@ -86,6 +104,19 @@ function Resume({ name, phone, address }) {
                     </span>
                 </div>
             </div>
+            <div className="resume-education-info">
+                <div className="school">
+                    <h2>School:</h2> <p>{school}</p>
+                    <p>
+                        {schoolStart} -- {schoolEnd}
+                    </p>
+                    <h2>University:</h2> <p>{university}</p>
+                    <p>
+                        {universityStart} -- {universityEnd}
+                    </p>
+                    <h2>Addition Info:</h2> <p>{additionInfo}</p>
+                </div>
+            </div>
         </section>
     );
 }
@@ -95,6 +126,15 @@ function ResumeBuilder() {
         name: "",
         phone: "",
         address: "",
+    });
+    const [educationInfo, setEducationInfo] = useState({
+        school: "",
+        schoolStart: "",
+        schoolEnd: "",
+        university: "",
+        universityStart: "",
+        universityEnd: "",
+        additionInfo: "",
     });
 
     function handleNameChange(e) {
@@ -112,6 +152,44 @@ function ResumeBuilder() {
         setPersonalInfo({ ...personalInfo, address: newAddress });
     }
 
+    function handleSchoolChange(e) {
+        const newSchool = e.target.value;
+        setEducationInfo({ ...educationInfo, school: newSchool });
+    }
+
+    function handleSchoolStartChange(e) {
+        const newSchoolStart = e.target.value;
+        setEducationInfo({ ...educationInfo, schoolStart: newSchoolStart });
+    }
+
+    function handleSchoolEndChange(e) {
+        const newSchoolEnd = e.target.value;
+        setEducationInfo({ ...educationInfo, schoolEnd: newSchoolEnd });
+    }
+
+    function handleUniversityChange(e) {
+        const newUniversity = e.target.value;
+        setEducationInfo({ ...educationInfo, university: newUniversity });
+    }
+
+    function handleUniversityStartChange(e) {
+        const newUniversityStart = e.target.value;
+        setEducationInfo({
+            ...educationInfo,
+            universityStart: newUniversityStart,
+        });
+    }
+
+    function handleUniversityEndChange(e) {
+        const newUniversityEnd = e.target.value;
+        setEducationInfo({ ...educationInfo, universityEnd: newUniversityEnd });
+    }
+
+    function handleAdditionalInfo(e) {
+        const newAdditionInfo = e.target.value;
+        setEducationInfo({ ...educationInfo, additionInfo: newAdditionInfo });
+    }
+
     return (
         <div className="resume-builder">
             <section className="input-info-cards">
@@ -120,12 +198,27 @@ function ResumeBuilder() {
                     onPhoneChange={handlePhoneChange}
                     onAddressChange={handleAddressChange}
                 />
-                <InputEducationInfo />
+                <InputEducationInfo
+                    onSchoolChange={handleSchoolChange}
+                    onSchoolStartChange={handleSchoolStartChange}
+                    onSchoolEndChange={handleSchoolEndChange}
+                    onUniversityChange={handleUniversityChange}
+                    onUniversityStartChange={handleUniversityStartChange}
+                    onUniversityEndChange={handleUniversityEndChange}
+                    onAdditionalInfoChange={handleAdditionalInfo}
+                />
             </section>
             <Resume
                 name={personalInfo.name}
                 phone={personalInfo.phone}
                 address={personalInfo.address}
+                school={educationInfo.school}
+                schoolStart={educationInfo.schoolStart}
+                schoolEnd={educationInfo.schoolEnd}
+                university={educationInfo.university}
+                universityStart={educationInfo.universityStart}
+                universityEnd={educationInfo.universityEnd}
+                additionInfo={educationInfo.additionInfo}
             />
         </div>
     );

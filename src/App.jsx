@@ -4,17 +4,66 @@ import "./App.css";
 function InputPersonalInfo({ onNameChange, onPhoneChange, onAddressChange }) {
     return (
         <div className="input-personal-info">
-            <label htmlFor="name">
-                Full name:{" "}
-                <input id="name" type="text" onChange={onNameChange} />
+            <h2>Personal information</h2>
+            <label>
+                <span>Full name:</span>{" "}
+                <input type="text" onChange={onNameChange} />
             </label>
-            <label htmlFor="tel">
-                Phone number:{" "}
-                <input id="tel" type="tel" onChange={onPhoneChange} />
+            <label>
+                <span>Phone number:</span>{" "}
+                <input type="tel" onChange={onPhoneChange} />
             </label>
-            <label htmlFor="address">
-                Address:{" "}
-                <input id="address" type="text" onChange={onAddressChange} />
+            <label>
+                <span>Address:</span>{" "}
+                <input type="text" onChange={onAddressChange} />
+            </label>
+        </div>
+    );
+}
+
+function InputEducationInfo({
+    onSchoolChange,
+    onUniversityChange,
+    onAdditionalInfoChange,
+}) {
+    return (
+        <div className="input-education-info">
+            <h2>Education</h2>
+            <div className="school">
+                <label>
+                    <span>School name:</span>{" "}
+                    <input type="text" onChange={onSchoolChange} />
+                </label>
+                <label>
+                    From:
+                    <input type="date"></input>
+                </label>
+                <label>
+                    To:
+                    <input type="date"></input>
+                </label>
+            </div>
+            <div className="university">
+                <label>
+                    <span>University name:</span>{" "}
+                    <input type="text" onChange={onUniversityChange} />
+                </label>
+                <label>
+                    From:
+                    <input type="date"></input>
+                </label>
+                <label>
+                    To:
+                    <input type="date"></input>
+                </label>
+            </div>
+            <label>
+                <span>Additional information:</span>{" "}
+                <textarea
+                    rows="3"
+                    cols="50"
+                    onChange={onAdditionalInfoChange}
+                />
             </label>
         </div>
     );
@@ -22,15 +71,22 @@ function InputPersonalInfo({ onNameChange, onPhoneChange, onAddressChange }) {
 
 function Resume({ name, phone, address }) {
     return (
-        <div className="resume">
-            <h1>{name}</h1>
-            <hr />
-            <p>
-                {"📞"}
-                {phone} {"🏠"}
-                {address}
-            </p>
-        </div>
+        <section className="resume">
+            <div className="resume-personal-info">
+                <h1>{name}</h1>
+                <hr />
+                <div className="phone-address-container">
+                    <span>
+                        {"📞"}
+                        {phone}
+                    </span>
+                    <span>
+                        {"🏠"}
+                        {address}
+                    </span>
+                </div>
+            </div>
+        </section>
     );
 }
 
@@ -58,11 +114,14 @@ function ResumeBuilder() {
 
     return (
         <div className="resume-builder">
-            <InputPersonalInfo
-                onNameChange={handleNameChange}
-                onPhoneChange={handlePhoneChange}
-                onAddressChange={handleAddressChange}
-            />
+            <section className="input-info-cards">
+                <InputPersonalInfo
+                    onNameChange={handleNameChange}
+                    onPhoneChange={handlePhoneChange}
+                    onAddressChange={handleAddressChange}
+                />
+                <InputEducationInfo />
+            </section>
             <Resume
                 name={personalInfo.name}
                 phone={personalInfo.phone}

@@ -3,17 +3,82 @@
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 0;
+    padding: 1rem;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
 }
 
 .resume-builder {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
-.input-personal-info {
+.input-info-cards {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    gap: 20px;
+}
+
+.input-info-cards > div {
+    border: 1px solid rgb(107, 107, 107);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.input-personal-info,
+.input-education-info {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: start;
+    align-items: center;
+    gap: 10px;
+}
+
+.school,
+.university {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-personal-info input,
+.input-education-info input {
+    min-width: 200px;
+}
+
+.input-personal-info label,
+.school label,
+.university label {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.resume {
+    min-width: 60%;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+.resume-personal-info {
+    background-color: #444444;
+}
+
+.phone-address-container {
+    display: flex;
+    gap: 20%;
+    justify-content: center;
+    align-items: center;
 }

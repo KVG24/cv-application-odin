@@ -41,14 +41,10 @@ function InputEducationInfo({
                 <div className="input-study-period">
                     <label>
                         From:{" "}
-                        <input
-                            type="date"
-                            onChange={onSchoolStartChange}
-                        ></input>
+                        <input type="date" onChange={onSchoolStartChange} />
                     </label>
                     <label>
-                        To:{" "}
-                        <input type="date" onChange={onSchoolEndChange}></input>
+                        To: <input type="date" onChange={onSchoolEndChange} />
                     </label>
                 </div>
             </div>
@@ -60,17 +56,11 @@ function InputEducationInfo({
                 <div className="input-study-period">
                     <label>
                         From:{" "}
-                        <input
-                            type="date"
-                            onChange={onUniversityStartChange}
-                        ></input>
+                        <input type="date" onChange={onUniversityStartChange} />
                     </label>
                     <label>
                         To:{" "}
-                        <input
-                            type="date"
-                            onChange={onUniversityEndChange}
-                        ></input>
+                        <input type="date" onChange={onUniversityEndChange} />
                     </label>
                 </div>
             </div>
@@ -86,6 +76,58 @@ function InputEducationInfo({
     );
 }
 
+function InputProfessionalExperienceInfo({
+    workplace,
+    onWorkplaceNameChange,
+    onWorkplacePositionChange,
+    onWorkplaceStartChange,
+    onWorkplaceEndChange,
+    onAddWorkplace,
+}) {
+    return (
+        <div className="input-prof-experience-info">
+            <h2>Professional Experience</h2>
+            <label className="input-prof-exp">
+                Workplace name:{" "}
+                <input
+                    type="text"
+                    value={workplace.name}
+                    onChange={onWorkplaceNameChange}
+                />
+            </label>
+            <label className="input-prof-position">
+                Position:{" "}
+                <input
+                    type="text"
+                    value={workplace.position}
+                    onChange={onWorkplacePositionChange}
+                />
+            </label>
+            <div className="input-work-period">
+                <label>
+                    From:{" "}
+                    <input
+                        type="date"
+                        value={workplace.start}
+                        onChange={onWorkplaceStartChange}
+                    />
+                </label>
+                <label>
+                    To:{" "}
+                    <input
+                        type="date"
+                        value={workplace.end}
+                        onChange={onWorkplaceEndChange}
+                    />
+                </label>
+            </div>
+            <button type="button" onClick={onAddWorkplace}>
+                Add Workplace
+            </button>
+        </div>
+    );
+}
+
 function Resume({
     name,
     phone,
@@ -97,6 +139,7 @@ function Resume({
     universityStart,
     universityEnd,
     additionInfo,
+    workplaces,
 }) {
     return (
         <section className="resume">
@@ -133,78 +176,135 @@ function Resume({
                     <h2>Addition Info:</h2> <p>{additionInfo}</p>
                 </div>
             </div>
+            <div className="resume-prof-experience-info">
+                <h2>Professional Experience:</h2>{" "}
+                {workplaces.map((workplace) => (
+                    <div key={workplace.id} className="resume-workplace">
+                        <p className="resume-workplace-name">
+                            {workplace.name}
+                        </p>
+                        <p className="resume-workplace-position">
+                            {workplace.position}
+                        </p>
+                        <p>
+                            {workplace.start} -- {workplace.end}
+                        </p>
+                    </div>
+                ))}
+            </div>
         </section>
     );
 }
 
 function ResumeBuilder() {
     const [personalInfo, setPersonalInfo] = useState({
-        name: "Vadym",
-        phone: "+380986431254",
-        address: "Ukraine, Kryvyi Rih",
-    });
-    const [educationInfo, setEducationInfo] = useState({
-        school: "KZSH №23",
-        schoolStart: "2001-01-09",
-        schoolEnd: "2013-05-31",
-        university: "KR National University",
-        universityStart: "2013-01-09",
-        universityEnd: "2014-05-31",
-        additionInfo:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam molestiae natus, neque, laborum mollitia delectus sequi ab explicabo corporis facere quam est rerum, illum eum impedit similique provident sapiente nostrum consequatur obcaecati dolor quos hic quidem vero! Excepturi, aspernatur a. Provident ut, quasi veritatis nesciunt libero quas harum quibusdam asperiores.",
+        name: "",
+        phone: "",
+        address: "",
     });
 
+    const [educationInfo, setEducationInfo] = useState({
+        school: "",
+        schoolStart: "",
+        schoolEnd: "",
+        university: "",
+        universityStart: "",
+        universityEnd: "",
+        additionInfo: "",
+    });
+
+    const [workplaces, setWorkplaces] = useState([]);
+
+    const [newWorkplace, setNewWorkplace] = useState({
+        name: "",
+        position: "",
+        start: "",
+        end: "",
+        id: "",
+    });
+
+    const [newId, setNewId] = useState(0);
+
     function handleNameChange(e) {
-        const newName = e.target.value;
-        setPersonalInfo({ ...personalInfo, name: newName });
+        const name = e.target.value;
+        setPersonalInfo({ ...personalInfo, name });
     }
 
     function handlePhoneChange(e) {
-        const newPhone = e.target.value;
-        setPersonalInfo({ ...personalInfo, phone: newPhone });
+        const phone = e.target.value;
+        setPersonalInfo({ ...personalInfo, phone });
     }
 
     function handleAddressChange(e) {
-        const newAddress = e.target.value;
-        setPersonalInfo({ ...personalInfo, address: newAddress });
+        const address = e.target.value;
+        setPersonalInfo({ ...personalInfo, address });
     }
 
     function handleSchoolChange(e) {
-        const newSchool = e.target.value;
-        setEducationInfo({ ...educationInfo, school: newSchool });
+        const school = e.target.value;
+        setEducationInfo({ ...educationInfo, school });
     }
 
     function handleSchoolStartChange(e) {
-        const newSchoolStart = e.target.value;
-        setEducationInfo({ ...educationInfo, schoolStart: newSchoolStart });
+        const schoolStart = e.target.value;
+        setEducationInfo({ ...educationInfo, schoolStart });
     }
 
     function handleSchoolEndChange(e) {
-        const newSchoolEnd = e.target.value;
-        setEducationInfo({ ...educationInfo, schoolEnd: newSchoolEnd });
+        const schoolEnd = e.target.value;
+        setEducationInfo({ ...educationInfo, schoolEnd });
     }
 
     function handleUniversityChange(e) {
-        const newUniversity = e.target.value;
-        setEducationInfo({ ...educationInfo, university: newUniversity });
+        const university = e.target.value;
+        setEducationInfo({ ...educationInfo, university });
     }
 
     function handleUniversityStartChange(e) {
-        const newUniversityStart = e.target.value;
+        const universityStart = e.target.value;
         setEducationInfo({
             ...educationInfo,
-            universityStart: newUniversityStart,
+            universityStart,
         });
     }
 
     function handleUniversityEndChange(e) {
-        const newUniversityEnd = e.target.value;
-        setEducationInfo({ ...educationInfo, universityEnd: newUniversityEnd });
+        const universityEnd = e.target.value;
+        setEducationInfo({ ...educationInfo, universityEnd });
     }
 
     function handleAdditionalInfo(e) {
-        const newAdditionInfo = e.target.value;
-        setEducationInfo({ ...educationInfo, additionInfo: newAdditionInfo });
+        const additionInfo = e.target.value;
+        setEducationInfo({ ...educationInfo, additionInfo });
+    }
+
+    function handleWorkplaceNameChange(e) {
+        const name = e.target.value;
+        setNewWorkplace((prevWorkplace) => ({ ...prevWorkplace, name }));
+    }
+
+    function handleWorkplacePositionChange(e) {
+        const position = e.target.value;
+        setNewWorkplace((prevWorkplace) => ({ ...prevWorkplace, position }));
+    }
+
+    function handleWorkplaceStartChange(e) {
+        const start = e.target.value;
+        setNewWorkplace((prevWorkplace) => ({ ...prevWorkplace, start }));
+    }
+
+    function handleWorkplaceEndChange(e) {
+        const end = e.target.value;
+        setNewWorkplace((prevWorkplace) => ({ ...prevWorkplace, end }));
+    }
+
+    function handleAddWorkplace() {
+        setWorkplaces((prevWorkplaces) => [
+            ...prevWorkplaces,
+            { ...newWorkplace, id: newId },
+        ]);
+        setNewId((prevId) => prevId + 1);
+        setNewWorkplace({ name: "", position: "", start: "", end: "", id: "" });
     }
 
     return (
@@ -224,6 +324,14 @@ function ResumeBuilder() {
                     onUniversityEndChange={handleUniversityEndChange}
                     onAdditionalInfoChange={handleAdditionalInfo}
                 />
+                <InputProfessionalExperienceInfo
+                    onWorkplaceNameChange={handleWorkplaceNameChange}
+                    onWorkplacePositionChange={handleWorkplacePositionChange}
+                    onWorkplaceStartChange={handleWorkplaceStartChange}
+                    onWorkplaceEndChange={handleWorkplaceEndChange}
+                    onAddWorkplace={handleAddWorkplace}
+                    workplace={newWorkplace}
+                />
             </section>
             <Resume
                 name={personalInfo.name}
@@ -236,6 +344,7 @@ function ResumeBuilder() {
                 universityStart={educationInfo.universityStart}
                 universityEnd={educationInfo.universityEnd}
                 additionInfo={educationInfo.additionInfo}
+                workplaces={workplaces}
             />
         </div>
     );

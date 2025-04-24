@@ -1,5 +1,4 @@
 #root {
-    max-width: 1280px;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
@@ -16,10 +15,16 @@ h2 {
     padding: 0;
 }
 
+p {
+    margin: 0;
+    padding: 0;
+}
+
 .resume-builder {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    gap: 20px;
 }
 
 .input-info-cards {
@@ -44,41 +49,69 @@ h2 {
     gap: 10px;
 }
 
-.school,
-.university {
+.resume-school,
+.resume-university,
+.input-university,
+.input-school {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    border-bottom: 1px solid #444444;
 }
 
-.input-personal-info input,
-.input-education-info input {
-    min-width: 200px;
+.input-school,
+.input-university {
+    padding-bottom: 10px;
 }
 
-.input-personal-info label,
-.school label,
-.university label {
+.input-personal-info label {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
+.input-study-period {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.input-study-period input {
+    width: 100px;
+}
+
 .resume {
-    min-width: 60%;
+    max-width: 900px;
+    min-width: 400px;
     border: 2px solid white;
     border-radius: 10px;
     padding: 2px;
+}
+
+.resume-education-info h2 {
+    padding-top: 10px;
+}
+
+.resume-ed-place-name {
+    font-weight: 700;
+    font-size: 1rem;
 }
 
 .resume-personal-info {
     background-color: #444444;
 }
 
-.phone-address-container {
+.resume-phone-address-container {
     display: flex;
     gap: 20%;
     justify-content: center;
     align-items: center;
+    padding: 10px;
+}
+
+.resume-additional-info {
+    width: 100%;
+    overflow-wrap: normal;
+    hyphens: auto;
 }

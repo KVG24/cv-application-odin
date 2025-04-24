@@ -33,36 +33,46 @@ function InputEducationInfo({
     return (
         <div className="input-education-info">
             <h2>Education</h2>
-            <div className="school">
+            <div className="input-school">
                 <label>
                     <span>School name:</span>{" "}
                     <input type="text" onChange={onSchoolChange} />
                 </label>
-                <label>
-                    From:
-                    <input type="date" onChange={onSchoolStartChange}></input>
-                </label>
-                <label>
-                    To:
-                    <input type="date" onChange={onSchoolEndChange}></input>
-                </label>
+                <div className="input-study-period">
+                    <label>
+                        From:{" "}
+                        <input
+                            type="date"
+                            onChange={onSchoolStartChange}
+                        ></input>
+                    </label>
+                    <label>
+                        To:{" "}
+                        <input type="date" onChange={onSchoolEndChange}></input>
+                    </label>
+                </div>
             </div>
-            <div className="university">
+            <div className="input-university">
                 <label>
                     <span>University name:</span>{" "}
                     <input type="text" onChange={onUniversityChange} />
                 </label>
-                <label>
-                    From:
-                    <input
-                        type="date"
-                        onChange={onUniversityStartChange}
-                    ></input>
-                </label>
-                <label>
-                    To:
-                    <input type="date" onChange={onUniversityEndChange}></input>
-                </label>
+                <div className="input-study-period">
+                    <label>
+                        From:{" "}
+                        <input
+                            type="date"
+                            onChange={onUniversityStartChange}
+                        ></input>
+                    </label>
+                    <label>
+                        To:{" "}
+                        <input
+                            type="date"
+                            onChange={onUniversityEndChange}
+                        ></input>
+                    </label>
+                </div>
             </div>
             <label>
                 <span>Additional information:</span>{" "}
@@ -93,7 +103,7 @@ function Resume({
             <div className="resume-personal-info">
                 <h1>{name}</h1>
                 <hr />
-                <div className="phone-address-container">
+                <div className="resume-phone-address-container">
                     <span>
                         {"📞"}
                         {phone}
@@ -105,15 +115,21 @@ function Resume({
                 </div>
             </div>
             <div className="resume-education-info">
-                <div className="school">
-                    <h2>School:</h2> <p>{school}</p>
+                <div className="resume-school">
+                    <h2>School:</h2>{" "}
+                    <p className="resume-ed-place-name">{school}</p>
                     <p>
                         {schoolStart} -- {schoolEnd}
                     </p>
-                    <h2>University:</h2> <p>{university}</p>
+                </div>
+                <div className="resume-university">
+                    <h2>University:</h2>{" "}
+                    <p className="resume-ed-place-name">{university}</p>
                     <p>
                         {universityStart} -- {universityEnd}
                     </p>
+                </div>
+                <div className="resume-additional-info">
                     <h2>Addition Info:</h2> <p>{additionInfo}</p>
                 </div>
             </div>
@@ -123,18 +139,19 @@ function Resume({
 
 function ResumeBuilder() {
     const [personalInfo, setPersonalInfo] = useState({
-        name: "",
-        phone: "",
-        address: "",
+        name: "Vadym",
+        phone: "+380986431254",
+        address: "Ukraine, Kryvyi Rih",
     });
     const [educationInfo, setEducationInfo] = useState({
-        school: "",
-        schoolStart: "",
-        schoolEnd: "",
-        university: "",
-        universityStart: "",
-        universityEnd: "",
-        additionInfo: "",
+        school: "KZSH №23",
+        schoolStart: "2001-01-09",
+        schoolEnd: "2013-05-31",
+        university: "KR National University",
+        universityStart: "2013-01-09",
+        universityEnd: "2014-05-31",
+        additionInfo:
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam molestiae natus, neque, laborum mollitia delectus sequi ab explicabo corporis facere quam est rerum, illum eum impedit similique provident sapiente nostrum consequatur obcaecati dolor quos hic quidem vero! Excepturi, aspernatur a. Provident ut, quasi veritatis nesciunt libero quas harum quibusdam asperiores.",
     });
 
     function handleNameChange(e) {

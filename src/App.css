@@ -30,7 +30,7 @@ p {
 .input-info-cards {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    min-width: 400px;
     gap: 20px;
 }
 
@@ -67,28 +67,45 @@ p {
 }
 
 .resume {
-    max-width: 900px;
-    min-width: 400px;
+    width: 900px;
+    min-width: 520px;
     border: 2px solid white;
     border-radius: 10px;
     padding: 2px;
 }
 
-.resume-personal-info {
-    background-color: #444444;
+.resume button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    right: 50px;
+    align-self: center;
 }
 
-.resume-phone-address-container {
+.resume-personal-info {
+    background-color: #444444;
+    border-bottom: 5px solid #fff;
+}
+
+.resume-category-name {
+    background-color: #8a8a8a;
+    color: #000;
+}
+
+.resume-info-container {
     display: flex;
-    gap: 20%;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     padding: 10px;
 }
 
-.resume-prof-experience-info div,
-.resume-education-info div {
+.resume-prof-experience-info,
+.resume-education-info {
     display: flex;
+    flex-direction: column;
 }
 
 .resume-workplace-name,
@@ -96,9 +113,37 @@ p {
     font-weight: 500;
 }
 
+.resume-place-of-education p,
+.resume-workplace p {
+    min-width: 0;
+    flex-shrink: 1;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
 .resume-workplace,
 .resume-place-of-education {
     padding: 1rem;
     display: flex;
     gap: 50px;
+    justify-content: center;
+}
+
+@media print {
+    .do-not-print {
+        display: none;
+    }
+    .resume-builder {
+        display: block;
+    }
+    .resume {
+        border: 2px solid #000;
+    }
+    .resume-personal-info {
+        background-color: #ffffff;
+        border-bottom: 2px solid #000000;
+    }
+    .resume-category-name {
+        border-top: 1px solid #000;
+    }
 }

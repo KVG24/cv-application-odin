@@ -7,7 +7,7 @@ export default function InputEducationInfo({
     onAddPlaceOfEducation,
 }) {
     return (
-        <div className="input-education-info">
+        <div className="input-education-info do-not-print">
             <h2>Education</h2>
             <div className="input-education-flex">
                 <label className="input-education">

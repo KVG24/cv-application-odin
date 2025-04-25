@@ -3,49 +3,66 @@ export default function RenderResume({
     email,
     phone,
     address,
-    workplaces,
     placesOfEducation,
+    hoveredEducationId,
+    setHoveredEducationId,
+    deletePlaceOfEducation,
+    workplaces,
+    hoveredWorkplaceId,
+    setHoveredWorkplaceId,
+    deleteWorkplace,
 }) {
     return (
         <section className="resume">
             <div className="resume-personal-info">
                 <h1>{name}</h1>
                 <hr />
-                <div className="resume-phone-address-container">
-                    <span>
-                        {"📨"}
-                        {email}
-                    </span>
-                    <span>
-                        {"📞"}
-                        {phone}
-                    </span>
-                    <span>
-                        {"🏠"}
-                        {address}
-                    </span>
+                <div className="resume-info-container">
+                    <span>📨 {email}</span>
+                    <span>📞 {phone}</span>
+                    <span>🏠 {address}</span>
                 </div>
             </div>
+
             <div className="resume-education-info">
-                <h2>Education:</h2>{" "}
-                {placesOfEducation.map((placeOfEducation) => (
-                    <div className="resume-place-of-education">
+                <h2 className="resume-category-name">Education:</h2>
+                {placesOfEducation.map((place) => (
+                    <div
+                        key={place.id}
+                        className="resume-place-of-education"
+                        onMouseEnter={() => setHoveredEducationId(place.id)}
+                        onMouseLeave={() => setHoveredEducationId(null)}
+                    >
                         <p className="resume-place-of-education-name">
-                            {placeOfEducation.name}
+                            {place.name}
                         </p>
-                        <p className="resume-degree">
-                            {placeOfEducation.degree}
-                        </p>
+                        <p className="resume-degree">{place.degree}</p>
                         <p>
-                            {placeOfEducation.start} -- {placeOfEducation.end}
+                            {place.start} - {place.end}
                         </p>
+                        {hoveredEducationId === place.id && (
+                            <button
+                                type="button"
+                                onClick={deletePlaceOfEducation}
+                            >
+                                Delete
+                            </button>
+                        )}
                     </div>
                 ))}
             </div>
+
             <div className="resume-prof-experience-info">
-                <h2>Professional Experience:</h2>{" "}
+                <h2 className="resume-category-name">
+                    Professional Experience:
+                </h2>
                 {workplaces.map((workplace) => (
-                    <div key={workplace.id} className="resume-workplace">
+                    <div
+                        key={workplace.id}
+                        className="resume-workplace"
+                        onMouseEnter={() => setHoveredWorkplaceId(workplace.id)}
+                        onMouseLeave={() => setHoveredWorkplaceId(null)}
+                    >
                         <p className="resume-workplace-name">
                             {workplace.name}
                         </p>
@@ -53,8 +70,13 @@ export default function RenderResume({
                             {workplace.position}
                         </p>
                         <p>
-                            {workplace.start} -- {workplace.end}
+                            {workplace.start} - {workplace.end}
                         </p>
+                        {hoveredWorkplaceId === workplace.id && (
+                            <button type="button" onClick={deleteWorkplace}>
+                                Delete
+                            </button>
+                        )}
                     </div>
                 ))}
             </div>

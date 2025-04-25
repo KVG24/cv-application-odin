@@ -5,7 +5,7 @@ export default function InputPersonalInfo({
     onAddressChange,
 }) {
     return (
-        <div className="input-personal-info">
+        <div className="input-personal-info do-not-print">
             <h2>Personal information</h2>
             <label>
                 <span>Full name:</span>{" "}

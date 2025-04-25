@@ -8,10 +8,10 @@ import RenderResume from "./components/RenderResume";
 function ResumeBuilder() {
     // Personal Info Section
     const [personalInfo, setPersonalInfo] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        address: "",
+        name: "John Doe",
+        email: "johndoe@gmail.com",
+        phone: "+8888888888",
+        address: "Planet Earth",
     });
 
     function handleNameChange(e) {
@@ -36,7 +36,7 @@ function ResumeBuilder() {
 
     // Education Section
     const [placesOfEducation, setPlacesOfEducation] = useState([]);
-
+    const [hoveredEducationId, setHoveredEducationId] = useState(null);
     const [newPlaceOfEducation, setNewPlaceOfEducation] = useState({
         name: "",
         degree: "",
@@ -44,7 +44,6 @@ function ResumeBuilder() {
         end: "",
         id: "",
     });
-
     const [newPlaceOfEducationId, setNewPlaceOfEducationId] = useState(0);
 
     function handlePlaceOfEducationNameChange(e) {
@@ -67,7 +66,7 @@ function ResumeBuilder() {
         setNewPlaceOfEducation((prevPlace) => ({ ...prevPlace, end }));
     }
 
-    function handleAddPlaceOfEducation() {
+    function addPlaceOfEducation() {
         setPlacesOfEducation((prevPlaces) => [
             ...prevPlaces,
             { ...newPlaceOfEducation, id: newPlaceOfEducationId },
@@ -82,9 +81,16 @@ function ResumeBuilder() {
         });
     }
 
+    function deletePlaceOfEducation() {
+        const newPOEArray = placesOfEducation.filter(
+            (place) => place.id !== hoveredEducationId
+        );
+        setPlacesOfEducation(newPOEArray);
+    }
+
     // Professional Experience section
     const [workplaces, setWorkplaces] = useState([]);
-
+    const [hoveredWorkplaceId, setHoveredWorkplaceId] = useState(null);
     const [newWorkplace, setNewWorkplace] = useState({
         name: "",
         position: "",
@@ -115,13 +121,20 @@ function ResumeBuilder() {
         setNewWorkplace((prevPlace) => ({ ...prevPlace, end }));
     }
 
-    function handleAddWorkplace() {
+    function addWorkplace() {
         setWorkplaces((prevWorkplaces) => [
             ...prevWorkplaces,
             { ...newWorkplace, id: newWorkplaceId },
         ]);
         setNewWorkplaceId((prevId) => prevId + 1);
         setNewWorkplace({ name: "", position: "", start: "", end: "", id: "" });
+    }
+
+    function deleteWorkplace() {
+        const newWorkplacesArray = workplaces.filter(
+            (place) => place.id !== hoveredWorkplaceId
+        );
+        setWorkplaces(newWorkplacesArray);
     }
 
     return (
@@ -140,7 +153,7 @@ function ResumeBuilder() {
                     onDegreeChange={handleDegreeChange}
                     onStudyStartChange={handleStudyStartChange}
                     onStudyEndChange={handleStudyEndChange}
-                    onAddPlaceOfEducation={handleAddPlaceOfEducation}
+                    onAddPlaceOfEducation={addPlaceOfEducation}
                     placeOfEducation={newPlaceOfEducation}
                 />
                 <InputProfessionalExperienceInfo
@@ -148,7 +161,7 @@ function ResumeBuilder() {
                     onWorkplacePositionChange={handleWorkplacePositionChange}
                     onWorkplaceStartChange={handleWorkplaceStartChange}
                     onWorkplaceEndChange={handleWorkplaceEndChange}
-                    onAddWorkplace={handleAddWorkplace}
+                    onAddWorkplace={addWorkplace}
                     workplace={newWorkplace}
                 />
             </section>
@@ -157,8 +170,14 @@ function ResumeBuilder() {
                 email={personalInfo.email}
                 phone={personalInfo.phone}
                 address={personalInfo.address}
-                workplaces={workplaces}
                 placesOfEducation={placesOfEducation}
+                hoveredEducationId={hoveredEducationId}
+                setHoveredEducationId={setHoveredEducationId}
+                deletePlaceOfEducation={deletePlaceOfEducation}
+                workplaces={workplaces}
+                hoveredWorkplaceId={hoveredWorkplaceId}
+                setHoveredWorkplaceId={setHoveredWorkplaceId}
+                deleteWorkplace={deleteWorkplace}
             />
         </div>
     );

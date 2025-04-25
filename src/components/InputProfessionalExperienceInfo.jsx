@@ -7,7 +7,7 @@ export default function InputProfessionalExperienceInfo({
     onAddWorkplace,
 }) {
     return (
-        <div className="input-prof-experience-info">
+        <div className="input-prof-experience-info do-not-print">
             <h2>Professional Experience</h2>
             <div className="input-prof-exp-flex">
                 <label className="input-prof-exp">

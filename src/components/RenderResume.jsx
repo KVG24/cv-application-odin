@@ -1,15 +1,10 @@
-export default function Resume({
+export default function RenderResume({
     name,
+    email,
     phone,
     address,
-    school,
-    schoolStart,
-    schoolEnd,
-    university,
-    universityStart,
-    universityEnd,
-    additionInfo,
     workplaces,
+    placesOfEducation,
 }) {
     return (
         <section className="resume">
@@ -17,6 +12,10 @@ export default function Resume({
                 <h1>{name}</h1>
                 <hr />
                 <div className="resume-phone-address-container">
+                    <span>
+                        {"📨"}
+                        {email}
+                    </span>
                     <span>
                         {"📞"}
                         {phone}
@@ -28,23 +27,20 @@ export default function Resume({
                 </div>
             </div>
             <div className="resume-education-info">
-                <div className="resume-school">
-                    <h2>School:</h2>{" "}
-                    <p className="resume-ed-place-name">{school}</p>
-                    <p>
-                        {schoolStart} -- {schoolEnd}
-                    </p>
-                </div>
-                <div className="resume-university">
-                    <h2>University:</h2>{" "}
-                    <p className="resume-ed-place-name">{university}</p>
-                    <p>
-                        {universityStart} -- {universityEnd}
-                    </p>
-                </div>
-                <div className="resume-additional-info">
-                    <h2>Addition Info:</h2> <p>{additionInfo}</p>
-                </div>
+                <h2>Education:</h2>{" "}
+                {placesOfEducation.map((placeOfEducation) => (
+                    <div className="resume-place-of-education">
+                        <p className="resume-place-of-education-name">
+                            {placeOfEducation.name}
+                        </p>
+                        <p className="resume-degree">
+                            {placeOfEducation.degree}
+                        </p>
+                        <p>
+                            {placeOfEducation.start} -- {placeOfEducation.end}
+                        </p>
+                    </div>
+                ))}
             </div>
             <div className="resume-prof-experience-info">
                 <h2>Professional Experience:</h2>{" "}

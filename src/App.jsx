@@ -3,40 +3,25 @@ import "./App.css";
 import InputPersonalInfo from "./components/InputPersonalInfo";
 import InputEducationInfo from "./components/InputEducationInfo";
 import InputProfessionalExperienceInfo from "./components/InputProfessionalExperienceInfo";
-import Resume from "./components/RenderResume";
+import RenderResume from "./components/RenderResume";
 
 function ResumeBuilder() {
+    // Personal Info Section
     const [personalInfo, setPersonalInfo] = useState({
         name: "",
+        email: "",
         phone: "",
         address: "",
     });
 
-    const [educationInfo, setEducationInfo] = useState({
-        school: "",
-        schoolStart: "",
-        schoolEnd: "",
-        university: "",
-        universityStart: "",
-        universityEnd: "",
-        additionInfo: "",
-    });
-
-    const [workplaces, setWorkplaces] = useState([]);
-
-    const [newWorkplace, setNewWorkplace] = useState({
-        name: "",
-        position: "",
-        start: "",
-        end: "",
-        id: "",
-    });
-
-    const [newId, setNewId] = useState(0);
-
     function handleNameChange(e) {
         const name = e.target.value;
         setPersonalInfo({ ...personalInfo, name });
+    }
+
+    function handleEmailChange(e) {
+        const email = e.target.value;
+        setPersonalInfo({ ...personalInfo, email });
     }
 
     function handlePhoneChange(e) {
@@ -49,70 +34,93 @@ function ResumeBuilder() {
         setPersonalInfo({ ...personalInfo, address });
     }
 
-    function handleSchoolChange(e) {
-        const school = e.target.value;
-        setEducationInfo({ ...educationInfo, school });
+    // Education Section
+    const [placesOfEducation, setPlacesOfEducation] = useState([]);
+
+    const [newPlaceOfEducation, setNewPlaceOfEducation] = useState({
+        name: "",
+        degree: "",
+        start: "",
+        end: "",
+        id: "",
+    });
+
+    const [newPlaceOfEducationId, setNewPlaceOfEducationId] = useState(0);
+
+    function handlePlaceOfEducationNameChange(e) {
+        const name = e.target.value;
+        setNewPlaceOfEducation((prevPlace) => ({ ...prevPlace, name }));
     }
 
-    function handleSchoolStartChange(e) {
-        const schoolStart = e.target.value;
-        setEducationInfo({ ...educationInfo, schoolStart });
+    function handleDegreeChange(e) {
+        const degree = e.target.value;
+        setNewPlaceOfEducation((prevPlace) => ({ ...prevPlace, degree }));
     }
 
-    function handleSchoolEndChange(e) {
-        const schoolEnd = e.target.value;
-        setEducationInfo({ ...educationInfo, schoolEnd });
+    function handleStudyStartChange(e) {
+        const start = e.target.value;
+        setNewPlaceOfEducation((prevPlace) => ({ ...prevPlace, start }));
     }
 
-    function handleUniversityChange(e) {
-        const university = e.target.value;
-        setEducationInfo({ ...educationInfo, university });
+    function handleStudyEndChange(e) {
+        const end = e.target.value;
+        setNewPlaceOfEducation((prevPlace) => ({ ...prevPlace, end }));
     }
 
-    function handleUniversityStartChange(e) {
-        const universityStart = e.target.value;
-        setEducationInfo({
-            ...educationInfo,
-            universityStart,
+    function handleAddPlaceOfEducation() {
+        setPlacesOfEducation((prevPlaces) => [
+            ...prevPlaces,
+            { ...newPlaceOfEducation, id: newPlaceOfEducationId },
+        ]);
+        setNewPlaceOfEducationId((prevId) => prevId + 1);
+        setNewPlaceOfEducation({
+            name: "",
+            degree: "",
+            start: "",
+            end: "",
+            id: "",
         });
     }
 
-    function handleUniversityEndChange(e) {
-        const universityEnd = e.target.value;
-        setEducationInfo({ ...educationInfo, universityEnd });
-    }
+    // Professional Experience section
+    const [workplaces, setWorkplaces] = useState([]);
 
-    function handleAdditionalInfo(e) {
-        const additionInfo = e.target.value;
-        setEducationInfo({ ...educationInfo, additionInfo });
-    }
+    const [newWorkplace, setNewWorkplace] = useState({
+        name: "",
+        position: "",
+        start: "",
+        end: "",
+        id: "",
+    });
+
+    const [newWorkplaceId, setNewWorkplaceId] = useState(0);
 
     function handleWorkplaceNameChange(e) {
         const name = e.target.value;
-        setNewWorkplace((prevWorkplace) => ({ ...prevWorkplace, name }));
+        setNewWorkplace((prevPlace) => ({ ...prevPlace, name }));
     }
 
     function handleWorkplacePositionChange(e) {
         const position = e.target.value;
-        setNewWorkplace((prevWorkplace) => ({ ...prevWorkplace, position }));
+        setNewWorkplace((prevPlace) => ({ ...prevPlace, position }));
     }
 
     function handleWorkplaceStartChange(e) {
         const start = e.target.value;
-        setNewWorkplace((prevWorkplace) => ({ ...prevWorkplace, start }));
+        setNewWorkplace((prevPlace) => ({ ...prevPlace, start }));
     }
 
     function handleWorkplaceEndChange(e) {
         const end = e.target.value;
-        setNewWorkplace((prevWorkplace) => ({ ...prevWorkplace, end }));
+        setNewWorkplace((prevPlace) => ({ ...prevPlace, end }));
     }
 
     function handleAddWorkplace() {
         setWorkplaces((prevWorkplaces) => [
             ...prevWorkplaces,
-            { ...newWorkplace, id: newId },
+            { ...newWorkplace, id: newWorkplaceId },
         ]);
-        setNewId((prevId) => prevId + 1);
+        setNewWorkplaceId((prevId) => prevId + 1);
         setNewWorkplace({ name: "", position: "", start: "", end: "", id: "" });
     }
 
@@ -121,17 +129,19 @@ function ResumeBuilder() {
             <section className="input-info-cards">
                 <InputPersonalInfo
                     onNameChange={handleNameChange}
+                    onEmailChange={handleEmailChange}
                     onPhoneChange={handlePhoneChange}
                     onAddressChange={handleAddressChange}
                 />
                 <InputEducationInfo
-                    onSchoolChange={handleSchoolChange}
-                    onSchoolStartChange={handleSchoolStartChange}
-                    onSchoolEndChange={handleSchoolEndChange}
-                    onUniversityChange={handleUniversityChange}
-                    onUniversityStartChange={handleUniversityStartChange}
-                    onUniversityEndChange={handleUniversityEndChange}
-                    onAdditionalInfoChange={handleAdditionalInfo}
+                    onPlaceOfEducationNameChange={
+                        handlePlaceOfEducationNameChange
+                    }
+                    onDegreeChange={handleDegreeChange}
+                    onStudyStartChange={handleStudyStartChange}
+                    onStudyEndChange={handleStudyEndChange}
+                    onAddPlaceOfEducation={handleAddPlaceOfEducation}
+                    placeOfEducation={newPlaceOfEducation}
                 />
                 <InputProfessionalExperienceInfo
                     onWorkplaceNameChange={handleWorkplaceNameChange}
@@ -142,18 +152,13 @@ function ResumeBuilder() {
                     workplace={newWorkplace}
                 />
             </section>
-            <Resume
+            <RenderResume
                 name={personalInfo.name}
+                email={personalInfo.email}
                 phone={personalInfo.phone}
                 address={personalInfo.address}
-                school={educationInfo.school}
-                schoolStart={educationInfo.schoolStart}
-                schoolEnd={educationInfo.schoolEnd}
-                university={educationInfo.university}
-                universityStart={educationInfo.universityStart}
-                universityEnd={educationInfo.universityEnd}
-                additionInfo={educationInfo.additionInfo}
                 workplaces={workplaces}
+                placesOfEducation={placesOfEducation}
             />
         </div>
     );

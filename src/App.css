@@ -42,7 +42,9 @@ p {
 
 .input-personal-info,
 .input-education-info,
-.input-prof-experience-info {
+.input-prof-experience-info,
+.input-education-flex,
+.input-prof-exp-flex {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -50,36 +52,18 @@ p {
     gap: 10px;
 }
 
-.resume-school,
-.resume-university,
-.input-university,
-.input-school {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border-bottom: 1px solid #444444;
+.input-study-period input,
+.input-work-period input {
+    margin-right: 10px;
 }
 
-.input-school,
-.input-university {
-    padding-bottom: 10px;
-}
-
-.input-personal-info label {
+.input-personal-info label,
+.input-education-flex label,
+.input-prof-exp-flex label {
     width: 100%;
     display: flex;
     justify-content: space-between;
-}
-
-.input-study-period {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.input-study-period input {
-    width: 100px;
+    gap: 20px;
 }
 
 .resume {
@@ -88,15 +72,6 @@ p {
     border: 2px solid white;
     border-radius: 10px;
     padding: 2px;
-}
-
-.resume-education-info h2 {
-    padding-top: 10px;
-}
-
-.resume-ed-place-name {
-    font-weight: 700;
-    font-size: 1rem;
 }
 
 .resume-personal-info {
@@ -111,23 +86,18 @@ p {
     padding: 10px;
 }
 
-.resume-additional-info {
-    width: 100%;
-    overflow-wrap: normal;
-    hyphens: auto;
-    padding-bottom: 20px;
-    border-bottom: 5px solid #444444;
-}
-
-.resume-prof-experience-info div {
+.resume-prof-experience-info div,
+.resume-education-info div {
     display: flex;
 }
 
-.resume-workplace-name {
+.resume-workplace-name,
+.resume-place-of-education-name {
     font-weight: 500;
 }
 
-.resume-workplace {
+.resume-workplace,
+.resume-place-of-education {
     padding: 1rem;
     display: flex;
     gap: 50px;

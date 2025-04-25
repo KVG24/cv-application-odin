@@ -1,54 +1,53 @@
 export default function InputEducationInfo({
-    onSchoolChange,
-    onSchoolStartChange,
-    onSchoolEndChange,
-    onUniversityChange,
-    onUniversityStartChange,
-    onUniversityEndChange,
-    onAdditionalInfoChange,
+    placeOfEducation,
+    onPlaceOfEducationNameChange,
+    onDegreeChange,
+    onStudyStartChange,
+    onStudyEndChange,
+    onAddPlaceOfEducation,
 }) {
     return (
         <div className="input-education-info">
             <h2>Education</h2>
-            <div className="input-school">
-                <label>
-                    <span>School name:</span>{" "}
-                    <input type="text" onChange={onSchoolChange} />
+            <div className="input-education-flex">
+                <label className="input-education">
+                    Place of Education:{" "}
+                    <input
+                        type="text"
+                        value={placeOfEducation.name}
+                        onChange={onPlaceOfEducationNameChange}
+                    />
                 </label>
-                <div className="input-study-period">
-                    <label>
-                        From:{" "}
-                        <input type="date" onChange={onSchoolStartChange} />
-                    </label>
-                    <label>
-                        To: <input type="date" onChange={onSchoolEndChange} />
-                    </label>
-                </div>
-            </div>
-            <div className="input-university">
-                <label>
-                    <span>University name:</span>{" "}
-                    <input type="text" onChange={onUniversityChange} />
+                <label className="input-degree">
+                    Degree:{" "}
+                    <input
+                        type="text"
+                        value={placeOfEducation.degree}
+                        onChange={onDegreeChange}
+                    />
                 </label>
-                <div className="input-study-period">
-                    <label>
-                        From:{" "}
-                        <input type="date" onChange={onUniversityStartChange} />
-                    </label>
-                    <label>
-                        To:{" "}
-                        <input type="date" onChange={onUniversityEndChange} />
-                    </label>
-                </div>
             </div>
-            <label>
-                <span>Additional information:</span>{" "}
-                <textarea
-                    rows="3"
-                    cols="50"
-                    onChange={onAdditionalInfoChange}
-                />
-            </label>
+            <div className="input-study-period">
+                <label>
+                    From:{" "}
+                    <input
+                        type="date"
+                        value={placeOfEducation.start}
+                        onChange={onStudyStartChange}
+                    />
+                </label>
+                <label>
+                    To:{" "}
+                    <input
+                        type="date"
+                        value={placeOfEducation.end}
+                        onChange={onStudyEndChange}
+                    />
+                </label>
+            </div>
+            <button type="button" onClick={onAddPlaceOfEducation}>
+                Add Place of Education
+            </button>
         </div>
     );
 }

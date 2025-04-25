@@ -1,5 +1,6 @@
 export default function InputPersonalInfo({
     onNameChange,
+    onEmailChange,
     onPhoneChange,
     onAddressChange,
 }) {
@@ -9,6 +10,10 @@ export default function InputPersonalInfo({
             <label>
                 <span>Full name:</span>{" "}
                 <input type="text" onChange={onNameChange} />
+            </label>
+            <label>
+                <span>Email:</span>{" "}
+                <input type="email" onChange={onEmailChange} />
             </label>
             <label>
                 <span>Phone number:</span>{" "}

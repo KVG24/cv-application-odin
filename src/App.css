@@ -147,3 +147,14 @@ p {
         border-top: 1px solid #000;
     }
 }
+
+@media screen and (max-width: 995px) {
+    .resume-builder {
+        flex-direction: column;
+    }
+
+    .resume {
+        width: 450px;
+        min-width: 100px;
+    }
+}

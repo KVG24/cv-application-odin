@@ -20,6 +20,21 @@ p {
     padding: 0;
 }
 
+input {
+    width: 100%;
+    height: 30px;
+    font-size: 1.2rem;
+    padding: 5px;
+    border: 1px solid #707070;
+    border-radius: 10px;
+    text-align: center;
+}
+
+input[type="date"] {
+    font-size: 1rem;
+    width: 120px;
+}
+
 .resume-builder {
     display: flex;
     justify-content: space-around;
@@ -29,12 +44,12 @@ p {
 .input-info-cards {
     display: flex;
     flex-direction: column;
-    min-width: 400px;
+    min-width: 425px;
     gap: 20px;
 }
 
 .input-info-cards > div {
-    border: 1px solid rgb(107, 107, 107);
+    border: 2px solid #bbbbbb;
     border-radius: 10px;
     padding: 1rem;
 }
@@ -51,24 +66,23 @@ p {
     gap: 10px;
 }
 
+.input-education-flex,
+.input-prof-exp-flex {
+    width: 100%;
+}
+
 .input-study-period input,
 .input-work-period input {
     margin-right: 10px;
-}
-
-.input-personal-info label,
-.input-education-flex label,
-.input-prof-exp-flex label {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
 }
 
 .tooltip {
     position: relative;
     display: inline-block;
     cursor: help;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .tooltip .tooltip-text {
@@ -96,6 +110,7 @@ p {
 
 .resume {
     max-width: 900px;
+    height: min-content;
     width: 100%;
     border: 2px solid white;
     border-radius: 10px;
@@ -156,14 +171,15 @@ p {
 }
 
 .resume button {
-    width: 100px;
+    background-color: #580000;
+    width: 200px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
 }
 
 @media print {

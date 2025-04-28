@@ -10,24 +10,21 @@ export default function InputProfessionalExperienceInfo({
         <div className="input-prof-experience-info do-not-print">
             <h2>Professional Experience</h2>
             <div className="input-prof-exp-flex">
-                <label className="input-prof-exp">
-                    Workplace name:{" "}
-                    <input
-                        type="text"
-                        name="workplace-name"
-                        value={workplace.name}
-                        onChange={onWorkplaceNameChange}
-                    />
-                </label>
-                <label className="input-prof-position">
-                    Position:{" "}
-                    <input
-                        type="text"
-                        name="position"
-                        value={workplace.position}
-                        onChange={onWorkplacePositionChange}
-                    />
-                </label>
+                <input
+                    type="text"
+                    name="workplace-name"
+                    placeholder="Workplace name"
+                    value={workplace.name}
+                    onChange={onWorkplaceNameChange}
+                />
+
+                <input
+                    type="text"
+                    name="position"
+                    placeholder="Position"
+                    value={workplace.position}
+                    onChange={onWorkplacePositionChange}
+                />
             </div>
             <div className="input-work-period">
                 <label>

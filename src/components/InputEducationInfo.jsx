@@ -14,6 +14,7 @@ export default function InputEducationInfo({
                     Place of Education:{" "}
                     <input
                         type="text"
+                        name="place-of-education"
                         value={placeOfEducation.name}
                         onChange={onPlaceOfEducationNameChange}
                     />
@@ -22,6 +23,7 @@ export default function InputEducationInfo({
                     Degree:{" "}
                     <input
                         type="text"
+                        name="degree"
                         value={placeOfEducation.degree}
                         onChange={onDegreeChange}
                     />
@@ -32,6 +34,7 @@ export default function InputEducationInfo({
                     From:{" "}
                     <input
                         type="date"
+                        name="education-start-date"
                         value={placeOfEducation.start}
                         onChange={onStudyStartChange}
                     />
@@ -40,10 +43,17 @@ export default function InputEducationInfo({
                     To:{" "}
                     <input
                         type="date"
+                        name="education-end-date"
                         value={placeOfEducation.end}
                         onChange={onStudyEndChange}
                     />
                 </label>
+                <div className="tooltip">
+                    ❔
+                    <span className="tooltip-text">
+                        Skip end date if ongoing
+                    </span>
+                </div>
             </div>
             <button type="button" onClick={onAddPlaceOfEducation}>
                 Add Place of Education

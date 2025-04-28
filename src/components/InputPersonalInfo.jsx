@@ -9,19 +9,39 @@ export default function InputPersonalInfo({
             <h2>Personal information</h2>
             <label>
                 <span>Full name:</span>{" "}
-                <input type="text" onChange={onNameChange} />
+                <input
+                    type="text"
+                    name="name"
+                    autoComplete="on"
+                    onChange={onNameChange}
+                />
             </label>
             <label>
                 <span>Email:</span>{" "}
-                <input type="email" onChange={onEmailChange} />
+                <input
+                    type="email"
+                    name="email"
+                    autoComplete="on"
+                    onChange={onEmailChange}
+                />
             </label>
             <label>
                 <span>Phone number:</span>{" "}
-                <input type="tel" onChange={onPhoneChange} />
+                <input
+                    type="tel"
+                    name="phone"
+                    autoComplete="on"
+                    onChange={onPhoneChange}
+                />
             </label>
             <label>
                 <span>Address:</span>{" "}
-                <input type="text" onChange={onAddressChange} />
+                <input
+                    type="text"
+                    name="address"
+                    autoComplete="on"
+                    onChange={onAddressChange}
+                />
             </label>
         </div>
     );

@@ -14,6 +14,7 @@ export default function InputProfessionalExperienceInfo({
                     Workplace name:{" "}
                     <input
                         type="text"
+                        name="workplace-name"
                         value={workplace.name}
                         onChange={onWorkplaceNameChange}
                     />
@@ -22,6 +23,7 @@ export default function InputProfessionalExperienceInfo({
                     Position:{" "}
                     <input
                         type="text"
+                        name="position"
                         value={workplace.position}
                         onChange={onWorkplacePositionChange}
                     />
@@ -32,6 +34,7 @@ export default function InputProfessionalExperienceInfo({
                     From:{" "}
                     <input
                         type="date"
+                        name="job-start-date"
                         value={workplace.start}
                         onChange={onWorkplaceStartChange}
                     />
@@ -40,10 +43,17 @@ export default function InputProfessionalExperienceInfo({
                     To:{" "}
                     <input
                         type="date"
+                        name="job-end-date"
                         value={workplace.end}
                         onChange={onWorkplaceEndChange}
                     />
                 </label>
+                <div className="tooltip">
+                    ❔
+                    <span className="tooltip-text">
+                        Skip end date if ongoing
+                    </span>
+                </div>
             </div>
             <button type="button" onClick={onAddWorkplace}>
                 Add Workplace

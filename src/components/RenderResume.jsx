@@ -4,11 +4,9 @@ export default function RenderResume({
     phone,
     address,
     placesOfEducation,
-    hoveredEducationId,
     setHoveredEducationId,
     deletePlaceOfEducation,
     workplaces,
-    hoveredWorkplaceId,
     setHoveredWorkplaceId,
     deleteWorkplace,
 }) {
@@ -38,16 +36,12 @@ export default function RenderResume({
                         </p>
                         <p className="resume-degree">{place.degree}</p>
                         <p>
-                            {place.start} - {place.end}
+                            {place.start} - {place.end ? place.end : "Present"}
                         </p>
-                        {hoveredEducationId === place.id && (
-                            <button
-                                type="button"
-                                onClick={deletePlaceOfEducation}
-                            >
-                                Delete
-                            </button>
-                        )}
+
+                        <button type="button" onClick={deletePlaceOfEducation}>
+                            Delete
+                        </button>
                     </div>
                 ))}
             </div>
@@ -70,13 +64,13 @@ export default function RenderResume({
                             {workplace.position}
                         </p>
                         <p>
-                            {workplace.start} - {workplace.end}
+                            {workplace.start} -{" "}
+                            {workplace.end ? workplace.end : "Present"}
                         </p>
-                        {hoveredWorkplaceId === workplace.id && (
-                            <button type="button" onClick={deleteWorkplace}>
-                                Delete
-                            </button>
-                        )}
+
+                        <button type="button" onClick={deleteWorkplace}>
+                            Delete
+                        </button>
                     </div>
                 ))}
             </div>

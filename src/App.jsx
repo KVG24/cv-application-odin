@@ -9,9 +9,9 @@ function ResumeBuilder() {
     // Personal Info Section
     const [personalInfo, setPersonalInfo] = useState({
         name: "John Doe",
-        email: "johndoe@gmail.com",
+        email: "johndoe@email.com",
         phone: "+8888888888",
-        address: "Planet Earth",
+        address: "New Hanover, Annesburg",
     });
 
     function handleNameChange(e) {
@@ -35,7 +35,22 @@ function ResumeBuilder() {
     }
 
     // Education Section
-    const [placesOfEducation, setPlacesOfEducation] = useState([]);
+    const [placesOfEducation, setPlacesOfEducation] = useState([
+        {
+            name: "University of Saint Denis",
+            degree: "Bachelor in Chemistry",
+            start: "2012-09-01",
+            end: "2016-05-30",
+            id: 1,
+        },
+        {
+            name: "Annesburg University",
+            degree: "Master of Science in Chemistry",
+            start: "2017-09-01",
+            end: "2019-06-15",
+            id: 2,
+        },
+    ]);
     const [hoveredEducationId, setHoveredEducationId] = useState(null);
     const [newPlaceOfEducation, setNewPlaceOfEducation] = useState({
         name: "",
@@ -44,7 +59,7 @@ function ResumeBuilder() {
         end: "",
         id: "",
     });
-    const [newPlaceOfEducationId, setNewPlaceOfEducationId] = useState(0);
+    const [newPlaceOfEducationId, setNewPlaceOfEducationId] = useState(3);
 
     function handlePlaceOfEducationNameChange(e) {
         const name = e.target.value;
@@ -89,7 +104,29 @@ function ResumeBuilder() {
     }
 
     // Professional Experience section
-    const [workplaces, setWorkplaces] = useState([]);
+    const [workplaces, setWorkplaces] = useState([
+        {
+            name: "Saint Denis Cloth Store",
+            position: "Retail worker",
+            start: "2013-01-20",
+            end: "2015-07-14",
+            id: 1,
+        },
+        {
+            name: "Saint Denis Gunsmith Store",
+            position: "Cashier",
+            start: "2015-09-10",
+            end: "2016-03-17",
+            id: 2,
+        },
+        {
+            name: "Annesburg Mining Lab",
+            position: "Chemical Technician",
+            start: "2019-07-10",
+            end: "Present",
+            id: 3,
+        },
+    ]);
     const [hoveredWorkplaceId, setHoveredWorkplaceId] = useState(null);
     const [newWorkplace, setNewWorkplace] = useState({
         name: "",
@@ -99,7 +136,7 @@ function ResumeBuilder() {
         id: "",
     });
 
-    const [newWorkplaceId, setNewWorkplaceId] = useState(0);
+    const [newWorkplaceId, setNewWorkplaceId] = useState(4);
 
     function handleWorkplaceNameChange(e) {
         const name = e.target.value;
@@ -171,11 +208,9 @@ function ResumeBuilder() {
                 phone={personalInfo.phone}
                 address={personalInfo.address}
                 placesOfEducation={placesOfEducation}
-                hoveredEducationId={hoveredEducationId}
                 setHoveredEducationId={setHoveredEducationId}
                 deletePlaceOfEducation={deletePlaceOfEducation}
                 workplaces={workplaces}
-                hoveredWorkplaceId={hoveredWorkplaceId}
                 setHoveredWorkplaceId={setHoveredWorkplaceId}
                 deleteWorkplace={deleteWorkplace}
             />
